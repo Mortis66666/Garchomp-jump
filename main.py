@@ -4,6 +4,11 @@ from utils import *
 import time
 
 
+
+
+
+
+
 pygame.font.init()
 
 width, height = 1000,600
@@ -14,7 +19,7 @@ garwidth, garheight = 103,107
 
 score_font = pygame.font.SysFont("comicsans",40)
 
-cacnea_rate = [False for i in range(120)] + [True]
+cacnea_rate = [False for _ in range(120)] + [True]
 
 white = (233,233,233)
 black = (0,0,0)
@@ -33,19 +38,21 @@ cacnea = enlarge(pygame.image.load(
     os.path.join("Assets","cacnea.png")
 ),0.5)
 
-jump = cacnea.get_height() + 50
+jump = cacnea.get_height() + 70
 print(jump)
 
 land = pygame.Rect(0,height//2-5,width,10)
 
 
-def draw_window(gar,cacneas,score):
+def draw_window(gar,cacneas,score,record):
     win.fill(white)
     pygame.draw.rect(win,black,land)
 
     score_img = score_font.render(f"Score: {score}",1,black)
+    record_img = score_font.render(f"Record: {record}",1,black)
 
     win.blit(score_img,(10,10))
+    win.blit(record_img,(width-record_img.get_width()-10,10))
 
     win.blit(garchomp,(gar.x,gar.y))
 
@@ -80,7 +87,9 @@ def main():
     move = 5
     score = 0
 
-    jumpcooldown = 10
+    jumpcooldown = 20
+
+    record = get_record()
 
 
     while run:
@@ -94,8 +103,11 @@ def main():
                 run = False
 
 
-        if score == 100:
-            move += 1
+        if score % 100 == 0:
+            move += 5
+
+        if break_record(score):
+            record = score
 
         key_pressed = pygame.key.get_pressed()
         handle_movement(key_pressed,gar)
@@ -114,7 +126,7 @@ def main():
 
         handle_cactus(cacneas,gar,move)
 
-        draw_window(gar,cacneas,score)
+        draw_window(gar,cacneas,score,record)
 
         score += 1
 
@@ -123,6 +135,7 @@ def main():
 
 
 
+    break_record(score)
     time.sleep(2)
     main()
 
