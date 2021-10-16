@@ -10,6 +10,7 @@ import time
 
 
 pygame.font.init()
+pygame.mixer.init()
 
 width, height = 1000,600
 win = pygame.display.set_mode((width, height))
@@ -37,6 +38,8 @@ garchomp = pygame.transform.flip(pygame.transform.scale(garchomp,(garwidth,garhe
 cacnea = enlarge(pygame.image.load(
     os.path.join("Assets","cacnea.png")
 ),0.5)
+
+jump_sound = pygame.mixer.Sound(os.path.join("Assets","jump.wav"))
 
 jump = cacnea.get_height() + 70
 print(jump)
@@ -66,6 +69,7 @@ def handle_movement(key_pressed,garchomp):
 
     if (key_pressed[pygame.K_UP] or key_pressed[pygame.K_SPACE]) and not is_jump(garchomp):
         garchomp.y -= jump
+        jump_sound.play()
 
 
 
