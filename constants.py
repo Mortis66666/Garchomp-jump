@@ -1,6 +1,6 @@
 kwargs = {
-    "host": "", #host
-    "user": "", #user
-    "passwd": "", #password
-    "database": "" #database
+    "host": "localhost", #host
+    "user": "mortis666", #user
+    "passwd": "653161", #password
+    "database": "garchompjump" #database
 }

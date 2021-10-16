@@ -47,16 +47,21 @@ print(jump)
 
 land = pygame.Rect(0,height//2-5,width,10)
 
+fire_bg = pygame.Rect(200,height-100,500,80)
+
 
 def draw_window(gar,cacneas,score,record):
     win.fill(white)
     pygame.draw.rect(win,black,land)
+    pygame.draw.rect(win,black,fire_bg)
 
     score_img = score_font.render(f"Score: {score}",1,black)
     record_img = score_font.render(f"Record: {record}",1,black)
+    fire_img = score_font.render("Fire Blast: ",1,black)
 
     win.blit(score_img,(10,10))
     win.blit(record_img,(width-record_img.get_width()-10,10))
+    win.blit(fire_img,(0,height-100))
 
     win.blit(garchomp,(gar.x,gar.y))
 
@@ -89,7 +94,7 @@ def main():
     gar = pygame.Rect(width//2-garwidth//2-300,height//2-garheight//2-50,garwidth,garheight)
 
     cacneas = []
-    move = 5
+    move = 6
     score = 0
 
     jumpcooldown = 20
@@ -109,7 +114,7 @@ def main():
 
 
         if score % 100 == 0:
-            move += 5
+            move += 2
 
         if break_record(score):
             record = score
