@@ -27,6 +27,7 @@ black = (0,0,0)
 fps = 60
 
 
+
 hitted = pygame.USEREVENT +1
 
 garchomp = pygame.image.load(
