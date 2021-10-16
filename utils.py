@@ -47,3 +47,8 @@ def get_record() -> int:
         rec = x[0]
 
     return rec
+
+def testing():
+    pass
+
+
