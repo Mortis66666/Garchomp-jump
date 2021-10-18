@@ -47,21 +47,21 @@ print(jump)
 
 land = pygame.Rect(0,height//2-5,width,10)
 
-fire_bg = pygame.Rect(200,height-100,500,80)
+#fire_bg = pygame.Rect(200,height-100,500,80)
 
 
 def draw_window(gar,cacneas,score,record):
     win.fill(white)
     pygame.draw.rect(win,black,land)
-    pygame.draw.rect(win,black,fire_bg)
+    #pygame.draw.rect(win,black,fire_bg)
 
     score_img = score_font.render(f"Score: {score}",1,black)
     record_img = score_font.render(f"Record: {record}",1,black)
-    fire_img = score_font.render("Fire Blast: ",1,black)
+    #fire_img = score_font.render("Fire Blast: ",1,black)
 
     win.blit(score_img,(10,10))
     win.blit(record_img,(width-record_img.get_width()-10,10))
-    win.blit(fire_img,(0,height-100))
+    #win.blit(fire_img,(0,height-100))
 
     win.blit(garchomp,(gar.x,gar.y))
 
